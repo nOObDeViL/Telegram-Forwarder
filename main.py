@@ -8,7 +8,7 @@ api_id = int(os.environ.get("API_ID"))
 api_hash = os.environ.get("API_HASH")
 
 source_channel = "mavanisunny"
-earnkaro_bot = "EarnKaroBot"  # apna actual bot username
+earnkaro_bot = "EarnKaroBot"  # apna bot username
 
 client = TelegramClient("session.session", api_id, api_hash)
 
@@ -22,6 +22,9 @@ async def handler(event):
         await asyncio.sleep(e.seconds)
         await event.forward_to(earnkaro_bot)
 
-print("Bot started successfully")
-client.start()
-client.run_until_disconnected()
+async def main():
+    print("Bot started successfully")
+    await client.start()
+    await client.run_until_disconnected()
+
+asyncio.run(main())
