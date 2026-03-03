@@ -7,21 +7,18 @@ api_hash = os.environ.get("API_HASH")
 
 client = TelegramClient("session", api_id, api_hash)
 
-SOURCE = "source_channel_username"
-DESTINATION = "destination_channel_username"
+SOURCE = "your_source_channel"
+DESTINATION = "your_destination_channel"
 
 @client.on(events.NewMessage(chats=SOURCE))
 async def handler(event):
     await client.send_message(DESTINATION, event.message)
 
 async def main():
-    await client.connect()
-
-    if not await client.is_user_authorized():
-        print("Session invalid")
-        return
-
+    await client.start()  # session file already exists, safe
     print("Bot started successfully")
-    await client.run_until_disconnected()
+
+    # Keep program alive forever
+    await asyncio.Event().wait()
 
 asyncio.run(main())
