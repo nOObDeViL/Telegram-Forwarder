@@ -11,10 +11,11 @@ async def main():
     await client.connect()
 
     if not await client.is_user_authorized():
-        print("Session invalid. Generate new session locally.")
+        print("Session invalid")
         return
 
     print("Bot started successfully")
+
     await client.run_until_disconnected()
 
 asyncio.run(main())
