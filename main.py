@@ -19,5 +19,5 @@ async def handler(event):
     except Exception as e:
         print(e)
 
-client.start()
+client.start(phone=os.environ.get("PHONE_NUMBER"))
 client.run_until_disconnected()
